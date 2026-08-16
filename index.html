@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bean & Hearth | Artisan Bakery & Specialty Coffee</title>
+    <style>
+        /* CSS Variables for Warm, Cozy Cafe Theme */
+        :root {
+            --espresso: #2c1810;
+            --roasted: #3f2317;
+            --amber: #d97706;
+            --cream: #fdfbf7;
+            --sand: #f3efe6;
+            --text-dark: #221f1e;
+            --text-muted: #6b635b;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Georgia', serif; /* Serif typography gives a handcrafted, artisanal feel */
+        }
+
+        body {
+            background-color: var(--cream);
+            color: var(--text-dark);
+            line-height: 1.6;
+            scroll-behavior: smooth;
+        }
+
+        /* Navigation */
+        header {
+            background-color: var(--espresso);
+            padding: 1.2rem 5%;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            color: var(--cream);
+            font-size: 1.5rem;
+            font-weight: 700;
+            text-decoration: none;
+            letter-spacing: 1px;
+            font-family: 'Segoe UI', sans-serif;
+            text-transform: uppercase;
+        }
+
+        .logo span {
+            color: var(--amber);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--cream);
+            text-decoration: none;
+            font-family: 'Segoe UI', sans-serif;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--amber);
+        }
+
+        .btn {
+            background-color: var(--amber);
+            color: white;
+            padding: 0.6rem 1.4rem;
+            text-decoration: none;
+            border-radius: 4px;
+            font-family: 'Segoe UI', sans-serif;
+            font-weight: 600;
+            transition: background 0.3s;
+            display: inline-block;
+        }
+
+        .btn:hover {
+            background-color: #b45309;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 90vh;
+            background: linear-gradient(rgba(44, 24, 16, 0.65), rgba(44, 24, 16, 0.75)), 
+                        url('https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            padding: 0 5%;
+            margin-top: 65px;
+        }
+
+        .hero-content {
+            max-width: 700px;
+        }
+
+        .hero h1 {
+            font-size: 3.8rem;
+            line-height: 1.15;
+            margin-bottom: 1.2rem;
+            font-weight: normal;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            font-family: 'Segoe UI', sans-serif;
+            color: #e5e7eb;
+        }
+
+        /* Specials Banner */
+        .specials-banner {
+            background-color: var(--amber);
+            color: white;
+            text-align: center;
+            padding: 1rem 5%;
+            font-family: 'Segoe UI', sans-serif;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        /* Menu Section */
+        .menu-section {
+            padding: 6rem 5%;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.8rem;
+            margin-bottom: 0.5rem;
+            font-weight: normal;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-muted);
+            font-family: 'Segoe UI', sans-serif;
+            margin-bottom: 4rem;
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+
+        @media (max-width: 768px) {
+            .menu-grid { grid-template-columns: 1fr; }
+            .hero h1 { font-size: 2.5rem; }
+            .nav-links { display: none; }
+        }
+
+        .menu-category h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            border-bottom: 2px solid var(--sand);
+            padding-bottom: 0.5rem;
+            color: var(--espresso);
+        }
+
+        .menu-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 1.5rem;
+        }
+
+        .item-name {
+            font-weight: bold;
+            font-size: 1.1rem;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        .item-desc {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            font-style: italic;
+            width: 100%;
+        }
+
+        .item-price {
+            font-family: 'Segoe UI', sans-serif;
+            font-weight: bold;
+            color: var(--amber);
+            font-size: 1.1rem;
+        }
+
+        .menu-item-wrapper {
+            margin-bottom: 1.5rem;
+        }
+
+        /* Atmosphere / Grid Photos */
+        .gallery-section {
+            background-color: var(--sand);
+            padding: 5rem 5%;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .gallery-img {
+            height: 280px;
+            background-size: cover;
+            background-position: center;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+
+        /* Visit / Info Section */
+        .visit-section {
+            background-color: var(--espresso);
+            color: white;
+            padding: 6rem 5%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+        }
+
+        .visit-info h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            font-weight: normal;
+        }
+
+        .visit-info p {
+            font-family: 'Segoe UI', sans-serif;
+            color: #d1d5db;
+            margin-bottom: 1rem;
+        }
+
+        .hours-list {
+            list-style: none;
+            font-family: 'Segoe UI', sans-serif;
+            margin-top: 2rem;
+        }
+
+        .hours-list li {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            color: #e5e7eb;
+        }
+
+        .map-placeholder {
+            background: var(--roasted);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 300px;
+            border: 1px solid rgba(255,255,255,0.1);
+            text-align: center;
+            padding: 2rem;
+        }
+
+        footer {
+            background-color: #1a0f0a;
+            color: #8c827a;
+            text-align: center;
+            padding: 2rem;
+            font-family: 'Segoe UI', sans-serif;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="#" class="logo">Bean & <span>Hearth</span></a>
+        <ul class="nav-links">
+            <li><a href="#menu">Our Menu</a></li>
+            <li><a href="#gallery">Atmosphere</a></li>
+            <li><a href="#visit">Visit Us</a></li>
+        </ul>
+        <a href="#visit" class="btn">Find Us</a>
+    </header>
+
+    <div class="specials-banner">
+        🥐 Fresh Sourdough Croissants out of the oven every morning at 07:00 AM!
+    </div>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Craft Coffee. Artisan Bakes. Slow Mornings.</h1>
+            <p>Locally roasted beans, small-batch sourdough, and a welcoming corner waiting for you in Kempton Park.</p>
+            <a href="#menu" class="btn" style="padding: 0.8rem 2rem; font-size: 1.1rem;">Explore Menu</a>
+        </div>
+    </section>
+
+    <section id="menu" class="menu-section">
+        <h2 class="section-title">From Our Counter</h2>
+        <p class="section-subtitle">Roasted single-origin beans and freshly baked goods made from scratch daily.</p>
+
+        <div class="menu-grid">
+            <!-- Coffee Category -->
+            <div class="menu-category">
+                <h3>☕ Specialty Coffee</h3>
+                
+                <div class="menu-item-wrapper">
+                    <div class="menu-item">
+                        <span class="item-name">Flat White / Cappuccino</span>
+                        <span class="item-price">R38</span>
+                    </div>
+                    <div class="item-desc">Double ristretto with micro-foamed local whole or oat milk.</div>
+                </div>
+
+                <div class="menu-item-wrapper">
+                    <div class="menu-item">
+                        <span class="item-name">Pour Over (Single Origin)</span>
+                        <span class="item-price">R45</span>
+                    </div>
+                    <div class="item-desc">Clean, bright cup highlighting regional fruit and floral notes.</div>
+                </div>
+
+                <div class="menu-item-wrapper">
+                    <div class="menu-item">
+                        <span class="item-name">Spiced Chai Latte</span>
+                        <span class="item-price">R42</span>
+                    </div>
+                    <div class="item-desc">House-brewed black tea infusion with raw honey and warm spices.</div>
+                </div>
+
+                <div class="menu-item-wrapper">
+                    <div class="menu-item">
+                        <span class="item-name">Iced Cold Brew</span>
+                        <span class="item-price">R40</span>
+                    </div>
+                    <div class="item-desc">Steeped for 18 hours. Smooth, bold, and refreshing over ice.</div>
+                </div>
+            </div>
+
+            <!-- Bakery Category -->
+            <div class="menu-category">
+                <h3>🥐 Bakery & Toast</h3>
+                
+                <div class="menu-item-wrapper">
+                    <div class="menu-item">
+                        <span class="item-name">All-Butter Croissant</span>
+                        <span class="item-price">R32</span>
+                    </div>
+                    <div class="item-desc">Flaky, golden-brown layers baked fresh every single morning.</div>
+                </div>
+
+                <div class="menu-item-wrapper">
+                    <div class="menu-item">
+                        <span class="item-name">Sourdough Avocado Toast</span>
+                        <span class="item-price">R65</span>
+                    </div>
+                    <div class="item-desc">House-baked country sourdough, smashed avo, lemon, chili flakes, micro-greens.</div>
+                </div>
+
+                <div class="menu-item-wrapper">
+                    <div class="menu-item">
+                        <span class="item-name">Almond Pain au Chocolat</span>
+                        <span class="item-price">R42</span>
+                    </div>
+                    <div class="item-desc">Filled with dark Belgian chocolate and topped with toasted almond flakes.</div>
+                </div>
+
+                <div class="menu-item-wrapper">
+                    <div class="menu-item">
+                        <span class="item-name">Cinnamon Bun</span>
+                        <span class="item-price">R45</span>
+                    </div>
+                    <div class="item-desc">Brioche dough smothered in brown sugar cinnamon and cream cheese glaze.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="gallery" class="gallery-section">
+        <h2 class="section-title" style="margin-bottom: 3rem;">A Space to Breathe</h2>
+        <div class="gallery-grid">
+            <div class="gallery-img" style="background-image: url('https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');"></div>
+            <div class="gallery-img" style="background-image: url('https://images.unsplash.com/photo-1509042239860-f550ce710b93?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');"></div>
+            <div class="gallery-img" style="background-image: url('https://images.unsplash.com/photo-1554118811-1e0d58224f24?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');"></div>
+        </div>
+    </section>
+
+    <section id="visit" class="visit-section">
+        <div class="visit-info">
+            <h2>Pull Up a Chair</h2>
+            <p>We believe in good conversation, exceptional extraction speed, and a cozy atmosphere to start your day right.</p>
+            
+            <p style="margin-top: 1.5rem;"><strong style="color: white;">📍 Location:</strong><br>Central Kempton Park, Gauteng</p>
+            
+            <ul class="hours-list">
+                <li><span>Monday – Friday</span> <span>06:30 – 16:00</span></li>
+                <li><span>Saturday</span> <span>07:00 – 15:00</span></li>
+                <li><span>Sunday</span> <span>08:00 – 13:00</span></li>
+            </ul>
+        </div>
+
+        <div class="map-placeholder">
+            <div>
+                <h3 style="margin-bottom: 1rem; font-family: 'Segoe UI', sans-serif;">Ready for your morning brew?</h3>
+                <p style="font-family: 'Segoe UI', sans-serif; color: #d1d5db; margin-bottom: 1.5rem; font-size: 0.95rem;">Tap below to open your preferred maps app for instant directions.</p>
+                <a href="https://maps.google.com" target="_blank" class="btn" style="background: white; color: var(--espresso);">Open in Google Maps</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Bean & Hearth Artisan Cafe. Brewed with passion in South Africa.</p>
+    </footer>
+
+</body>
+</html>
